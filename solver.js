@@ -1,10 +1,32 @@
-const { SudokuSolver } = require('@jlguenego/sudoku-generator');
+// const { SudokuSolver } = require('@jlguenego/sudoku-generator');
 
-let grid = SudokuSolver.generate();
-grid = SudokuSolver.carve(grid, 55);
-grid = grid.flat();
+// let grid = SudokuSolver.generate();
+// grid = SudokuSolver.carve(grid, 55);
+// grid = grid.flat();
 
-console.log(grid);
+const grid = [
+  0, 0, 3, 0, 7, 0, 4, 0, 0, 0, 0, 0,
+  0, 8, 5, 0, 0, 6, 0, 5, 0, 0, 0, 0,
+  0, 7, 0, 0, 0, 7, 0, 4, 0, 0, 0, 0,
+  2, 0, 0, 7, 0, 3, 0, 0, 0, 0, 4, 0,
+  0, 0, 0, 1, 2, 7, 0, 0, 5, 0, 2, 6,
+  9, 3, 0, 0, 2, 1, 0, 5, 0, 0, 0, 0,
+  0, 0, 0, 8, 0, 0, 0, 4, 0
+]
+
+const gridNice = [
+  [0, 0, 3, 0, 7, 0, 4, 0, 0], 
+  [0, 0, 0, 0, 8, 5, 0, 0, 6],
+  [0, 5, 0, 0, 0, 0, 0, 7, 0],
+  [0, 0, 7, 0, 4, 0, 0, 0, 0],
+  [2, 0, 0, 7, 0, 3, 0, 0, 0],
+  [0, 4, 0, 0, 0, 0, 1, 2, 7], 
+  [0, 0, 5, 0, 2, 6, 9, 3, 0], 
+  [0, 2, 1, 0, 5, 0, 0, 0, 0],
+  [0, 0, 0, 8, 0, 0, 0, 4, 0]
+]
+
+console.log(isValidBoard(grid));
 
 
 function isValidBoard(board) {
@@ -17,7 +39,10 @@ function isValidBoard(board) {
     for (let j = 0; j < 9; j++) {
       const el = board[i * 9 + j];
       if (el === 0) continue;
-      if (rowSet.has(el)) return false;
+      if (rowSet.has(el)) {
+        // console.log(`Invalid row at ${i * 9 + j}`);
+        return false;
+      }
       rowSet.add(el);
     }
   }
@@ -28,7 +53,10 @@ function isValidBoard(board) {
     for (let j = 0; j < 9; j++) {
       const el = board[9 * j + i];
       if (el === 0) continue;
-      if (colSet.has(el)) return false;
+      if (colSet.has(el)) {
+        // console.log(`Invalid col at ${9 * j + i}`);
+        return false;
+      }
       colSet.add(el);
     }
   }
@@ -37,9 +65,14 @@ function isValidBoard(board) {
   for (let i = 0; i < 9; i++) {
     const squareSet = new Set();
     for (let j = 0; j < 9; j++) {
-      const el = board[Math.floor(j / 3) * 3 + (j % 3) + (i * 3)];
+      const el = board[Math.floor(j / 3) * (3 ** 2) + (j % 3) + 
+        Math.floor(i / 3) * (3 ** 3) + (i % 3) * 3];
       if (el === 0) continue;
-      if (squareSet.has(el)) return false;
+      if (squareSet.has(el)) {
+        // console.log(`Invalid square at ${Math.floor(j / 3) * (3 ** 2) + (j % 3) + 
+        //   Math.floor(i / 3) * (3 ** 3) + (i % 3) * 3}`);
+        return false;
+      }
       squareSet.add(el);
     }
   }
