@@ -26,7 +26,49 @@ const gridNice = [
   [0, 0, 0, 8, 0, 0, 0, 4, 0]
 ]
 
+console.log(grid);
+
 console.log(isValidBoard(grid));
+
+const solution = depthFirstSolver(grid);
+
+console.log(solution);
+
+// console.log(isValidBoard(solution));
+
+function depthFirstSolver(board) {
+  const stack = [];
+
+  // get first nodes and add to stack;
+  const index = board.indexOf(0);
+
+  for (let i = 1; i <= 9; i++) {
+    let newBoard = board.slice();
+    newBoard[index] = i;
+
+    if (isValidBoard(newBoard)) {
+      stack.push(newBoard);
+    } 
+  }
+
+  while (stack.length > 0) {
+    const currentBoard = stack.pop();
+    const indexNextEmpty = currentBoard.indexOf(0);
+
+    // if all positions non-zero, this return solution
+    if (indexNextEmpty === -1) return currentBoard;
+
+    // add new boards to stack
+    for (let i = 1; i <= 9; i++) {
+      let newBoard = currentBoard.slice();
+      newBoard[indexNextEmpty] = i;
+  
+      if (isValidBoard(newBoard)) {
+        stack.push(newBoard);
+      } 
+    }
+  }
+}
 
 
 function isValidBoard(board) {
@@ -78,11 +120,4 @@ function isValidBoard(board) {
   }
 
   return true;
-}
-
-function findNextEmpty(board) {
-  // return index of next null value in board
-  // if no non-null value return -1
-
-
 }
