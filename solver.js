@@ -34,7 +34,7 @@ const solution = depthFirstSolver(grid);
 
 console.log(solution);
 
-// console.log(isValidBoard(solution));
+console.log(isValidBoard(solution));
 
 function depthFirstSolver(board) {
   const stack = [];
@@ -120,4 +120,15 @@ function isValidBoard(board) {
   }
 
   return true;
+}
+
+
+function printGrid(board) {
+  const printBoard = new Array(9).fill(null).map(() => Array(9));
+  
+  for (let i = 0; i < board.length; i++) {
+    printBoard[Math.floor(i / 9)][i % 9] = board[i];
+  }
+
+  return printBoard;
 }
