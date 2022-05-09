@@ -3,10 +3,7 @@ import { grid, depthFirstSolver, isValidBoard } from './modules/solver.js';
 // console.log(grid);
 
 window.addEventListener('DOMContentLoaded', (e) => {
-
-  console.log(grid);
-  console.log(e);
-
+  
   grid.forEach((el, i) => {
     if (el !== 0) {
       const element = document.getElementById(String(i + 1));

@@ -39,25 +39,44 @@ const grid = [
 
 function depthFirstSolver(board) {
   const stack = [];
+  const path = [];
 
   // get first nodes and add to stack;
   const index = board.indexOf(0);
+
+  // save index so know when backtracked
+  let prevIndex = index;
 
   for (let i = 1; i <= 9; i++) {
     let newBoard = board.slice();
     newBoard[index] = i;
 
     if (isValidBoard(newBoard)) {
-      stack.push(newBoard);
+      stack.push([newBoard, [i, index]]);
     } 
   }
 
   while (stack.length > 0) {
-    const currentBoard = stack.pop();
+    const [currentBoard, change] = stack.pop();
     const indexNextEmpty = currentBoard.indexOf(0);
 
-    // if all positions non-zero, this return solution
-    if (indexNextEmpty === -1) return currentBoard;
+    // if index is before previous index, add removals to path
+    if (change[1] < prevIndex) {
+      for (let i = prevIndex; i > change[1]; i--) {
+        if (board[i] === 0) {
+          path.push([0, i]);
+        }
+      }
+    }
+
+    // add current change to path
+    path.push([change[0], change[1]]);
+
+    // update prevIndex
+    prevIndex = change[1];
+
+    // if all positions non-zero, this return solution and path
+    if (indexNextEmpty === -1) return [currentBoard, path];
 
     // add new boards to stack
     for (let i = 1; i <= 9; i++) {
@@ -65,10 +84,13 @@ function depthFirstSolver(board) {
       newBoard[indexNextEmpty] = i;
   
       if (isValidBoard(newBoard)) {
-        stack.push(newBoard);
+        stack.push([newBoard, [i, indexNextEmpty]]);
       } 
     }
   }
+
+  // if no solution return null
+  return null;
 }
 
 
