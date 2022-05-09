@@ -1,0 +1,28 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-rows: repeat(9, minmax(0, 1fr));
+  aspect-ratio: 1 / 1;
+  max-width: 650px;
+  margin: 0 auto;
+  border-top: 3px solid black;
+  border-left: 3px solid black;
+}
+
+.unit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.unit:nth-of-type(3n) {
+  border-right: 3px solid black;
+}
+
+.unit:nth-child(n+19):nth-child(-n+27),
+.unit:nth-child(n+46):nth-child(-n+54),
+.unit:nth-child(n+73):nth-child(-n+81) {
+  border-bottom: 3px solid black;
+}
