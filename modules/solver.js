@@ -4,6 +4,18 @@
 // grid = SudokuSolver.carve(grid, 55);
 // grid = grid.flat();
 
+// const gridNice = [
+//     [0, 0, 3, 0, 7, 0, 4, 0, 0], 
+//     [0, 0, 0, 0, 8, 5, 0, 0, 6],
+//     [0, 5, 0, 0, 0, 0, 0, 7, 0],
+//     [0, 0, 7, 0, 4, 0, 0, 0, 0],
+//     [2, 0, 0, 7, 0, 3, 0, 0, 0],
+//     [0, 4, 0, 0, 0, 0, 1, 2, 7], 
+//     [0, 0, 5, 0, 2, 6, 9, 3, 0], 
+//     [0, 2, 1, 0, 5, 0, 0, 0, 0],
+//     [0, 0, 0, 8, 0, 0, 0, 4, 0]
+//   ]
+
 const grid = [
   0, 0, 3, 0, 7, 0, 4, 0, 0, 0, 0, 0,
   0, 8, 5, 0, 0, 6, 0, 5, 0, 0, 0, 0,
@@ -14,27 +26,16 @@ const grid = [
   0, 0, 0, 8, 0, 0, 0, 4, 0
 ]
 
-const gridNice = [
-  [0, 0, 3, 0, 7, 0, 4, 0, 0], 
-  [0, 0, 0, 0, 8, 5, 0, 0, 6],
-  [0, 5, 0, 0, 0, 0, 0, 7, 0],
-  [0, 0, 7, 0, 4, 0, 0, 0, 0],
-  [2, 0, 0, 7, 0, 3, 0, 0, 0],
-  [0, 4, 0, 0, 0, 0, 1, 2, 7], 
-  [0, 0, 5, 0, 2, 6, 9, 3, 0], 
-  [0, 2, 1, 0, 5, 0, 0, 0, 0],
-  [0, 0, 0, 8, 0, 0, 0, 4, 0]
-]
 
-console.log(grid);
+// console.log(grid);
 
-console.log(isValidBoard(grid));
+// console.log(isValidBoard(grid));
 
-const solution = depthFirstSolver(grid);
+// const solution = depthFirstSolver(grid);
 
-console.log(solution);
+// console.log(solution);
 
-console.log(isValidBoard(solution));
+// console.log(isValidBoard(solution));
 
 function depthFirstSolver(board) {
   const stack = [];
@@ -132,3 +133,5 @@ function printGrid(board) {
 
   return printBoard;
 }
+
+export { grid, depthFirstSolver, isValidBoard };

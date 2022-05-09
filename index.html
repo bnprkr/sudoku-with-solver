@@ -5,20 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="main.js"></script>
   <title>Sudoku Solver</title>
 </head>
 <body>
   <div class="board">
     <!-- <div class="row"> -->
-        <div id="1" class="unit">1</div>
-        <div id="2" class="unit">2</div>
-        <div id="3" class="unit">3</div>
-        <div id="4" class="unit">4</div>
-        <div id="5" class="unit">5</div>
-        <div id="6" class="unit">6</div>
-        <div id="7" class="unit">7</div>
-        <div id="8" class="unit">8</div>
-        <div id="9" class="unit">9</div>
+        <div id="1" class="unit"></div>
+        <div id="2" class="unit"></div>
+        <div id="3" class="unit"></div>
+        <div id="4" class="unit"></div>
+        <div id="5" class="unit"></div>
+        <div id="6" class="unit"></div>
+        <div id="7" class="unit"></div>
+        <div id="8" class="unit"></div>
+        <div id="9" class="unit"></div>
 
 
         <div id="10" class="unit"></div>
@@ -106,5 +107,7 @@
         <div id="81" class="unit"></div>
     <!-- </div> -->
   </div>
+
+  <button id="solve-button">Solve!</button>
 </body>
 </html>
