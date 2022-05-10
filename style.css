@@ -27,3 +27,16 @@
 .unit:nth-child(n+73):nth-child(-n+81) {
   border-bottom: 3px solid black;
 }
+
+@keyframes flashBlueAnimation {
+  from   { background-color: blue; opacity: 0.1; }
+  to  { background-color: blue; opacity: 0.5; }
+}
+
+.added {
+  animation: flashBlueAnimation 0.2s;
+}
+
+/* .removed {
+
+} */
