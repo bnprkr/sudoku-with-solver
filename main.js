@@ -3,11 +3,29 @@ import { grid, depthFirstSolver, isValidBoard } from './modules/solver.js';
 // console.log(grid);
 
 window.addEventListener('DOMContentLoaded', (e) => {
+
+  // add html for board
+  const boardElement = document.getElementById('sudoku-board');
+  for (let i = 1; i <= 81; i++) {
+    boardElement.innerHTML += `
+      <div class="sudoku-board-cell">
+        <input type="text" pattern="\\d*" id="${i}" maxlength="1">
+      </div>
+    `
+  }
+
+  const inputs = document.querySelectorAll('.sudoku-board-cell>input');
+  inputs.forEach(input => {
+    input.addEventListener('focusout', (e) => {
+      if (!input.validity.valid) input.value = '';
+    })
+  });
   
   grid.forEach((el, i) => {
     if (el !== 0) {
       const element = document.getElementById(String(i + 1));
-      element.innerHTML = el;
+      element.value = el;
+      element.readOnly = true;
     }
   });
 
@@ -25,12 +43,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
       
       setTimeout(() => {
         if (val === 0) {
-          element.innerHTML = '';
+          element.value = '';
           element.classList.remove("added");
-          element.classList.add("removed");
+          // element.classList.add("removed");
         } else {
-          element.innerHTML = val;
-          element.classList.remove("removed");
+          element.value = val;
+          // element.classList.remove("removed");
           element.classList.add("added");
         }
       }, i * 0.05);

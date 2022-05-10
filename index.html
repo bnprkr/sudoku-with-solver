@@ -6,108 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="main.js"></script>
+  <script type="application/javascript">
+    function selectText() {
+      const input = event.target;
+      console.log(input);
+      // input.focus();
+      // input.select();
+    } 
+  </script>
   <title>Sudoku Solver</title>
 </head>
 <body>
-  <div class="board">
-    <!-- <div class="row"> -->
-        <div id="1" class="unit"></div>
-        <div id="2" class="unit"></div>
-        <div id="3" class="unit"></div>
-        <div id="4" class="unit"></div>
-        <div id="5" class="unit"></div>
-        <div id="6" class="unit"></div>
-        <div id="7" class="unit"></div>
-        <div id="8" class="unit"></div>
-        <div id="9" class="unit"></div>
-
-
-        <div id="10" class="unit"></div>
-        <div id="11" class="unit"></div>
-        <div id="12" class="unit"></div>
-        <div id="13" class="unit"></div>
-        <div id="14" class="unit"></div>
-        <div id="15" class="unit"></div>
-        <div id="16" class="unit"></div>
-        <div id="17" class="unit"></div>
-        <div id="18" class="unit"></div>
-
-        <div id="19" class="unit"></div>
-        <div id="20" class="unit"></div>
-        <div id="21" class="unit"></div>
-        <div id="22" class="unit"></div>
-        <div id="23" class="unit"></div>
-        <div id="24" class="unit"></div>
-        <div id="25" class="unit"></div>
-        <div id="26" class="unit"></div>
-        <div id="27" class="unit"></div>
-    <!-- </div> -->
-    
-    <!-- <div class="row"> -->
-        <div id="28" class="unit"></div>
-        <div id="29" class="unit"></div>
-        <div id="30" class="unit"></div>
-        <div id="31" class="unit"></div>
-        <div id="32" class="unit"></div>
-        <div id="33" class="unit"></div>
-        <div id="34" class="unit"></div>
-        <div id="35" class="unit"></div>
-        <div id="36" class="unit"></div>
-
-        <div id="37" class="unit"></div>
-        <div id="38" class="unit"></div>
-        <div id="39" class="unit"></div>
-        <div id="40" class="unit"></div>
-        <div id="41" class="unit"></div>
-        <div id="42" class="unit"></div>
-        <div id="43" class="unit"></div>
-        <div id="44" class="unit"></div>
-        <div id="45" class="unit"></div>
-
-        <div id="46" class="unit"></div>
-        <div id="47" class="unit"></div>
-        <div id="48" class="unit"></div>
-        <div id="49" class="unit"></div>
-        <div id="50" class="unit"></div>
-        <div id="51" class="unit"></div>
-        <div id="52" class="unit"></div>
-        <div id="53" class="unit"></div>
-        <div id="54" class="unit"></div>
-    <!-- </div> -->
-
-    <!-- <div class="row"> -->
-        <div id="55" class="unit"></div>
-        <div id="56" class="unit"></div>
-        <div id="57" class="unit"></div>
-        <div id="58" class="unit"></div>
-        <div id="59" class="unit"></div>
-        <div id="60" class="unit"></div>
-        <div id="61" class="unit"></div>
-        <div id="62" class="unit"></div>
-        <div id="63" class="unit"></div>
-
-        <div id="64" class="unit"></div>
-        <div id="65" class="unit"></div>
-        <div id="66" class="unit"></div>
-        <div id="67" class="unit"></div>
-        <div id="68" class="unit"></div>
-        <div id="69" class="unit"></div>
-        <div id="70" class="unit"></div>
-        <div id="71" class="unit"></div>
-        <div id="72" class="unit"></div>
-
-        <div id="73" class="unit"></div>
-        <div id="74" class="unit"></div>
-        <div id="75" class="unit"></div>
-        <div id="76" class="unit"></div>
-        <div id="77" class="unit"></div>
-        <div id="78" class="unit"></div>
-        <div id="79" class="unit"></div>
-        <div id="80" class="unit"></div>
-        <div id="81" class="unit"></div>
-    <!-- </div> -->
+  <div id="sudoku-board">
+    <!-- board content inserted here -->
   </div>
-
   <button id="solve-button">Solve!</button>
 </body>
 </html>

@@ -1,4 +1,4 @@
-.board {
+#sudoku-board {
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   grid-template-rows: repeat(9, minmax(0, 1fr));
@@ -9,7 +9,7 @@
   border-left: 3px solid black;
 }
 
-.unit {
+.sudoku-board-cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,13 +18,13 @@
   font-size: 2em;
 }
 
-.unit:nth-of-type(3n) {
+.sudoku-board-cell:nth-of-type(3n) {
   border-right: 3px solid black;
 }
 
-.unit:nth-child(n+19):nth-child(-n+27),
-.unit:nth-child(n+46):nth-child(-n+54),
-.unit:nth-child(n+73):nth-child(-n+81) {
+.sudoku-board-cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-board-cell:nth-child(n+46):nth-child(-n+54),
+.sudoku-board-cell:nth-child(n+73):nth-child(-n+81) {
   border-bottom: 3px solid black;
 }
 
@@ -37,6 +37,13 @@
   animation: flashBlueAnimation 0.2s;
 }
 
-/* .removed {
-
-} */
+input {
+  background: none;
+  font-size: 1em;
+  text-align: center;
+  width: 2em;
+  height: 2em;
+  max-width: 100%;
+  border: 0;
+  outline: 0;
+}
