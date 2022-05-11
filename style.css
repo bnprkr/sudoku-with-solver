@@ -3,7 +3,7 @@
   grid-template-columns: repeat(9, minmax(0, 1fr));
   grid-template-rows: repeat(9, minmax(0, 1fr));
   aspect-ratio: 1 / 1;
-  max-width: 650px;
+  max-width: 600px;
   margin: 0 auto;
   border-top: 3px solid black;
   border-left: 3px solid black;
