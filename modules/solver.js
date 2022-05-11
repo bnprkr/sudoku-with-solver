@@ -208,4 +208,4 @@ function printGrid(board) {
   return printBoard;
 }
 
-export { grid, depthFirstSolver, isValidBoard };
+export { grid, depthFirstSolver, isValidBoard, isValidEntry };
