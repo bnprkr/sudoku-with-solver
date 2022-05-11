@@ -47,3 +47,7 @@ input {
   border: 0;
   outline: 0;
 }
+
+.invalid {
+  background-color: red;
+}
