@@ -37,6 +37,13 @@ const grid = [
 
 // console.log(isValidBoard(solution));
 
+// function generateGrid() {
+//   let grid = SudokuSolver.generate();
+//   grid = SudokuSolver.carve(grid, 55);
+//   grid = grid.flat();
+//   return grid;
+// }
+
 function isValidEntry(board, entryIndex) {
   // get row (zero indexed)
   const row = Math.floor(entryIndex / 9);
@@ -53,7 +60,6 @@ function isValidEntry(board, entryIndex) {
     const el = board[row * 9 + j];
     if (el === 0) continue;
     if (rowSet.has(el)) {
-      // console.log(`Invalid row at ${i * 9 + j}`);
       return false;
     }
     rowSet.add(el);
@@ -65,7 +71,6 @@ function isValidEntry(board, entryIndex) {
     const el = board[9 * j + col];
     if (el === 0) continue;
     if (colSet.has(el)) {
-      // console.log(`Invalid col at ${9 * j + i}`);
       return false;
     }
     colSet.add(el);
@@ -79,8 +84,6 @@ function isValidEntry(board, entryIndex) {
       Math.floor(square / 3) * (3 ** 3) + (square % 3) * 3];
     if (el === 0) continue;
     if (squareSet.has(el)) {
-      // console.log(`Invalid square at ${Math.floor(j / 3) * (3 ** 2) + (j % 3) + 
-      //   Math.floor(i / 3) * (3 ** 3) + (i % 3) * 3}`);
       return false;
     }
     squareSet.add(el);
@@ -142,7 +145,7 @@ function depthFirstSolver(board) {
   }
 
   // if no solution return null
-  return null;
+  return [null, null];
 }
 
 
@@ -157,7 +160,6 @@ function isValidBoard(board) {
       const el = board[i * 9 + j];
       if (el === 0) continue;
       if (rowSet.has(el)) {
-        // console.log(`Invalid row at ${i * 9 + j}`);
         return false;
       }
       rowSet.add(el);
@@ -171,7 +173,6 @@ function isValidBoard(board) {
       const el = board[9 * j + i];
       if (el === 0) continue;
       if (colSet.has(el)) {
-        // console.log(`Invalid col at ${9 * j + i}`);
         return false;
       }
       colSet.add(el);
@@ -186,8 +187,6 @@ function isValidBoard(board) {
         Math.floor(i / 3) * (3 ** 3) + (i % 3) * 3];
       if (el === 0) continue;
       if (squareSet.has(el)) {
-        // console.log(`Invalid square at ${Math.floor(j / 3) * (3 ** 2) + (j % 3) + 
-        //   Math.floor(i / 3) * (3 ** 3) + (i % 3) * 3}`);
         return false;
       }
       squareSet.add(el);
@@ -196,7 +195,6 @@ function isValidBoard(board) {
 
   return true;
 }
-
 
 function printGrid(board) {
   const printBoard = new Array(9).fill(null).map(() => Array(9));
@@ -208,4 +206,4 @@ function printGrid(board) {
   return printBoard;
 }
 
-export { grid, depthFirstSolver, isValidBoard, isValidEntry };
+export { depthFirstSolver, isValidBoard, isValidEntry };
