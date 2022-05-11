@@ -29,12 +29,14 @@
 }
 
 @keyframes flashBlueAnimation {
-  from   { background-color: blue; opacity: 0.1; }
-  to  { background-color: blue; opacity: 0.5; }
+  0%  { background-color: #1AA7EC; opacity: 0.2; }
+  25%  { background-color: #1AA7EC; opacity: 0.4; }
+  50%  { background-color: #1AA7EC; opacity: 0.6; }
+  100%  { background-color: #1AA7EC; opacity: 0.8; }
 }
 
 .added {
-  animation: flashBlueAnimation 0.2s;
+  animation: flashBlueAnimation 0.8s;
 }
 
 input {

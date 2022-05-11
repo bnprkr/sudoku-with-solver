@@ -1,4 +1,34 @@
-import { grid, depthFirstSolver, isValidBoard, isValidEntry } from './modules/solver.js';
+import { depthFirstSolver, isValidBoard, isValidEntry } from './modules/solver.js';
+import { boards } from './modules/boards.js';
+
+function generateBoard(boards) {
+  const board = boards[Math.floor(Math.random() * boards.length)];
+
+  board.forEach((el, i) => {
+    const element = document.getElementById(String(i + 1));
+    element.parentElement.classList.remove('invalid');
+    if (el === 0) {
+      element.value = ''; 
+      element.readOnly = false;
+      element.classList.add('free');
+    } else {
+      element.value = el;
+      element.readOnly = true;
+      element.classList.remove('free');
+    }
+  });
+}
+
+function resetBoard() {
+  const inputs = document.querySelectorAll('.sudoku-board-cell>input');
+
+  inputs.forEach(input => {
+    if (input.readOnly !== true) {
+      input.value = '';
+      input.parentElement.classList.remove('invalid');
+    }
+  });
+}
 
 function getCurrentBoard() {
   const board = [];
@@ -14,7 +44,6 @@ function getCurrentBoard() {
 }
 
 window.addEventListener('DOMContentLoaded', (e) => {
-
   // add html for board
   const boardElement = document.getElementById('sudoku-board');
   for (let i = 1; i <= 81; i++) {
@@ -24,16 +53,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
       </div>
     `
   }
+  
+  // generate first board;
+  generateBoard(boards);
 
-  grid.forEach((el, i) => {
-    if (el !== 0) {
-      const element = document.getElementById(String(i + 1));
-      element.value = el;
-      element.readOnly = true;
-    }
-  });
-
-  const inputs = document.querySelectorAll('.sudoku-board-cell>input');
+  const inputs = document.querySelectorAll('.sudoku-board-cell>input.free');
   inputs.forEach(input => {
     // check validity of input on focusout and remove if not valid
     input.addEventListener('focusout', (e) => {
@@ -44,6 +68,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
       if (!input.validity.valid) {
         input.value = '';
+        input.parentElement.classList.remove('invalid');
         return;
       }
     });
@@ -65,25 +90,53 @@ window.addEventListener('DOMContentLoaded', (e) => {
     });
   });
 
-  getCurrentBoard();
-  
+  // generate button generates a new board at random 
+  const generateButton = document.getElementById('generate-button');
+  generateButton.addEventListener('click', (e) => {
+    generateBoard(boards);
+  });
+
+  // reset button resets board to original state
+  const resetButton = document.getElementById('reset-button');
+  resetButton.addEventListener('click', (e) => {
+    resetBoard();
+  });
+
+  // solve button checks validity of board and attempts to solve if valid
   const solveButton = document.getElementById('solve-button');
   solveButton.addEventListener('click', (e) => {
-    const [solution, path] = depthFirstSolver(grid);
+    // check for invalid entries before attempting to solve
+    const board = getCurrentBoard();
+    const valid = isValidBoard(board);
+
+    if (!valid) {
+      alert('Please remove invalid entries (highlighted in red) before attempting to solve.');
+      return;
+    }
+
+    const [solution, path] = depthFirstSolver(board);
+
+    // alert if no solution possible
+    if (solution === null) {
+      alert('No solution is possible from the current board');
+      return;
+    }
 
     path.forEach((el, i) => {
-      const [val, pos] = el;
-      const element = document.getElementById(String(pos + 1));
-      
       setTimeout(() => {
+        const [val, pos] = el;
+        const element = document.getElementById(String(pos + 1));
         if (val === 0) {
           element.value = '';
-          element.classList.remove("added");
+          element.parentElement.classList.remove("added");
         } else {
-          element.value = val;
-          element.classList.add("added");
+          element.parentElement.classList.remove("added");
+          setTimeout(() => {
+            element.parentElement.classList.add("added");
+            element.value = val;
+          }, 1);
         }
-      }, i * 0.05);
+      }, i * (10000 / path.length));
     });
   });
 
