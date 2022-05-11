@@ -6,14 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="main.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
   <title>Sudoku Solver</title>
 </head>
 <body>
-  <div id="sudoku-board">
-    <!-- board content inserted here -->
+  <h1>Sudoku with solver!</h1>
+  <div id="wrapper">
+    <div id="sudoku-board">
+      <!-- board content inserted here -->
+    </div>
   </div>
-  <button id="generate-button">Generate</button>
-  <button id="reset-button">Reset</button>
-  <button id="solve-button">Solve!</button>
+  
+  <div class="controls">
+    <div class="buttons-left">
+      <button id="button-generate" class="pure-button">Generate</button>
+      <button id="button-reset" class="pure-button">Reset</button>
+    </div>
+    <div class="buttons-right">
+      <button id="button-solve" class="pure-button">Solve linear!</button>
+      <button id="button-solve" class="pure-button">Solve random!</button>
+    </div>
+  </div>
 </body>
 </html>

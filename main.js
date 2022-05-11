@@ -23,9 +23,10 @@ function resetBoard() {
   const inputs = document.querySelectorAll('.sudoku-board-cell>input');
 
   inputs.forEach(input => {
+    input.parentElement.classList.remove("added");
+    input.parentElement.classList.remove('invalid');
     if (input.readOnly !== true) {
       input.value = '';
-      input.parentElement.classList.remove('invalid');
     }
   });
 }
@@ -91,19 +92,19 @@ window.addEventListener('DOMContentLoaded', (e) => {
   });
 
   // generate button generates a new board at random 
-  const generateButton = document.getElementById('generate-button');
+  const generateButton = document.getElementById('button-generate');
   generateButton.addEventListener('click', (e) => {
     generateBoard(boards);
   });
 
   // reset button resets board to original state
-  const resetButton = document.getElementById('reset-button');
+  const resetButton = document.getElementById('button-reset');
   resetButton.addEventListener('click', (e) => {
     resetBoard();
   });
 
   // solve button checks validity of board and attempts to solve if valid
-  const solveButton = document.getElementById('solve-button');
+  const solveButton = document.getElementById('button-solve');
   solveButton.addEventListener('click', (e) => {
     // check for invalid entries before attempting to solve
     const board = getCurrentBoard();
