@@ -1,6 +1,17 @@
-import { grid, depthFirstSolver, isValidBoard } from './modules/solver.js';
+import { grid, depthFirstSolver, isValidBoard, isValidEntry } from './modules/solver.js';
 
-// console.log(grid);
+function getCurrentBoard() {
+  const board = [];
+  const inputs = document.querySelectorAll('.sudoku-board-cell>input');
+
+  inputs.forEach(input => {
+    const val = input.value;
+    if (val === '') board.push(0);
+    else board.push(parseInt(val));
+  });
+
+  return board;
+}
 
 window.addEventListener('DOMContentLoaded', (e) => {
 
@@ -9,18 +20,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
   for (let i = 1; i <= 81; i++) {
     boardElement.innerHTML += `
       <div class="sudoku-board-cell">
-        <input type="text" pattern="\\d*" id="${i}" maxlength="1">
+        <input type="text" pattern="^[1-9]$" id="${i}" maxlength="1">
       </div>
     `
   }
 
-  const inputs = document.querySelectorAll('.sudoku-board-cell>input');
-  inputs.forEach(input => {
-    input.addEventListener('focusout', (e) => {
-      if (!input.validity.valid) input.value = '';
-    })
-  });
-  
   grid.forEach((el, i) => {
     if (el !== 0) {
       const element = document.getElementById(String(i + 1));
@@ -29,13 +33,43 @@ window.addEventListener('DOMContentLoaded', (e) => {
     }
   });
 
+  const inputs = document.querySelectorAll('.sudoku-board-cell>input');
+  inputs.forEach(input => {
+    // check validity of input on focusout and remove if not valid
+    input.addEventListener('focusout', (e) => {
+      if (input.value === '') {
+        input.parentElement.classList.remove('invalid');
+        return;
+      }
+
+      if (!input.validity.valid) {
+        input.value = '';
+        return;
+      }
+    });
+
+    // check validity of entry on keyup and highlight red if not valid
+    input.addEventListener('keyup', (e) => {
+      // check if number 1-9 else return
+      const regex = new RegExp('^[1-9]$');
+      if (!regex.test(input.value)) return;
+
+      const board = getCurrentBoard();
+      const valid = isValidEntry(board, input.id - 1);
+
+      if (!valid) {
+        input.parentElement.classList.add('invalid');
+      } else {
+        input.parentElement.classList.remove('invalid');
+      }
+    });
+  });
+
+  getCurrentBoard();
+  
   const solveButton = document.getElementById('solve-button');
   solveButton.addEventListener('click', (e) => {
     const [solution, path] = depthFirstSolver(grid);
-    // solution.forEach((el, i) => {
-    //   const element = document.getElementById(String(i + 1));
-    //   element.innerHTML = el;
-    // });
 
     path.forEach((el, i) => {
       const [val, pos] = el;
@@ -45,15 +79,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
         if (val === 0) {
           element.value = '';
           element.classList.remove("added");
-          // element.classList.add("removed");
         } else {
           element.value = val;
-          // element.classList.remove("removed");
           element.classList.add("added");
         }
       }, i * 0.05);
     });
   });
-
 
 });
