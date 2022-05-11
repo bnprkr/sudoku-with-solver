@@ -37,6 +37,58 @@ const grid = [
 
 // console.log(isValidBoard(solution));
 
+function isValidEntry(board, entryIndex) {
+  // get row (zero indexed)
+  const row = Math.floor(entryIndex / 9);
+
+  // get column (zero indexed)
+  const col = Math.floor(entryIndex % 9);
+
+  // get square (zero indexed)
+  const square = Math.floor(entryIndex / (3 ** 3)) * 3 + Math.floor((entryIndex % 9) / 3);
+
+  //rows 
+  const rowSet = new Set();
+  for (let j = 0; j < 9; j++) {
+    const el = board[row * 9 + j];
+    if (el === 0) continue;
+    if (rowSet.has(el)) {
+      // console.log(`Invalid row at ${i * 9 + j}`);
+      return false;
+    }
+    rowSet.add(el);
+  }
+  
+  // columns
+  const colSet = new Set();
+  for (let j = 0; j < 9; j++) {
+    const el = board[9 * j + col];
+    if (el === 0) continue;
+    if (colSet.has(el)) {
+      // console.log(`Invalid col at ${9 * j + i}`);
+      return false;
+    }
+    colSet.add(el);
+  }
+
+
+  // squares;
+  const squareSet = new Set();
+  for (let j = 0; j < 9; j++) {
+    const el = board[Math.floor(j / 3) * (3 ** 2) + (j % 3) + 
+      Math.floor(square / 3) * (3 ** 3) + (square % 3) * 3];
+    if (el === 0) continue;
+    if (squareSet.has(el)) {
+      // console.log(`Invalid square at ${Math.floor(j / 3) * (3 ** 2) + (j % 3) + 
+      //   Math.floor(i / 3) * (3 ** 3) + (i % 3) * 3}`);
+      return false;
+    }
+    squareSet.add(el);
+  }
+
+  return true;
+}
+
 function depthFirstSolver(board) {
   const stack = [];
   const path = [];
