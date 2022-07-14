@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
   for (let i = 1; i <= 81; i++) {
     boardElement.innerHTML += `
       <div class="sudoku-board-cell">
-        <input type="tel" pattern="$[1-9]^" id="${i}" maxlength="1">
+        <input type="tel" pattern="[1-9]?" id="${i}" maxlength="1">
       </div>
     `;
   }
