@@ -1,10 +1,11 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 h1 {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   text-align: center;
 }
 
@@ -38,17 +39,29 @@ h1 {
   border-right: 3px solid black;
 }
 
-.sudoku-board-cell:nth-child(n+19):nth-child(-n+27),
-.sudoku-board-cell:nth-child(n+46):nth-child(-n+54),
-.sudoku-board-cell:nth-child(n+73):nth-child(-n+81) {
+.sudoku-board-cell:nth-child(n + 19):nth-child(-n + 27),
+.sudoku-board-cell:nth-child(n + 46):nth-child(-n + 54),
+.sudoku-board-cell:nth-child(n + 73):nth-child(-n + 81) {
   border-bottom: 3px solid black;
 }
 
 @keyframes flashBlueAnimation {
-  0%  { background-color: #1AA7EC; opacity: 0.2; }
-  25%  { background-color: #1AA7EC; opacity: 0.4; }
-  50%  { background-color: #1AA7EC; opacity: 0.6; }
-  100%  { background-color: #1AA7EC; opacity: 0.8; }
+  0% {
+    background-color: #1aa7ec;
+    opacity: 0.2;
+  }
+  25% {
+    background-color: #1aa7ec;
+    opacity: 0.4;
+  }
+  50% {
+    background-color: #1aa7ec;
+    opacity: 0.6;
+  }
+  100% {
+    background-color: #1aa7ec;
+    opacity: 0.8;
+  }
 }
 
 .added {
@@ -59,8 +72,8 @@ input {
   background: none;
   font-size: 1em;
   text-align: center;
-  width: 2em;
-  height: 2em;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   border: 0;
   outline: 0;
@@ -76,10 +89,10 @@ input {
   gap: 5px;
 }
 
-#button-generate, 
-#button-reset, 
+#button-generate,
+#button-reset,
 #button-solve {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   min-width: 120px;
   margin: 5px 0;
   color: white;
