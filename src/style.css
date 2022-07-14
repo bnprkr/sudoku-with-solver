@@ -4,18 +4,23 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+}
+
 h1 {
   font-family: "Courier New", Courier, monospace;
+  font-size: clamp(1.2rem, 3.5vw, 2.5rem);
   text-align: center;
 }
 
 #wrapper {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
 }
 
 #sudoku-board {
-  /* background-color: rgba(156, 156, 156, 0.212); */
   background-color: whitesmoke;
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
@@ -27,12 +32,9 @@ h1 {
 }
 
 .sudoku-board-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-bottom: 1px solid black;
   border-right: 1px solid black;
-  font-size: 2em;
+  font-size: clamp(1.4rem, 8vw, 2.5rem);
 }
 
 .sudoku-board-cell:nth-of-type(3n) {
@@ -77,6 +79,9 @@ input {
   max-width: 100%;
   border: 0;
   outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .invalid {
@@ -85,6 +90,7 @@ input {
 
 .controls {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
 }
@@ -101,16 +107,16 @@ input {
 }
 
 #button-generate {
+  /* green */
   background: rgb(28, 184, 65);
-  /* this is a green */
 }
 
 #button-reset {
+  /* orange */
   background: rgb(223, 117, 20);
-  /* this is an orange */
 }
 
 #button-solve {
+  /* blue */
   background: rgb(66, 184, 221);
-  /* this is a light blue */
 }
