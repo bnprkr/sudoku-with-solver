@@ -6,7 +6,7 @@ Sudoku game with solver algorithm (depth first search; described below), solver 
 
 ## Live demo
 
-https://sudoku-with-solver.netlify.app/
+https://sudoku.benparker.net
 
 ## Solver algorithm
 
