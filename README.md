@@ -1,12 +1,12 @@
 # Sudoku with solver
 
-## Introduction
-
-Sudoku game with solver algorithm (depth first search; described below), solver visualisation and highlighting of invalid entries (i.e. the same entry already exists in the current row, column or 3x3 square).
-
 ## Live demo
 
 https://sudoku.benparker.net
+
+## Introduction
+
+Sudoku game with solver algorithm (depth first search; described below), solver visualisation and highlighting of invalid entries (i.e. the same entry already exists in the current row, column or 3x3 square).
 
 ## Solver algorithm
 
